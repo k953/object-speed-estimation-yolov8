@@ -1,0 +1,61 @@
+        ┌───────────────┐
+        │   highway.mp4 │
+        │  (Video Input)│
+        └───────┬───────┘
+                │
+                ▼
+        ┌────────────────┐
+        │ Frame Extraction│
+        │   (OpenCV)     │
+        └───────┬────────┘
+                │
+                ▼
+        ┌────────────────┐
+        │ Object Detection│
+        │     YOLOv8     │
+        │ (x,y,w,h) box │
+        └───────┬────────┘
+                │
+                ▼
+        ┌────────────────────────┐
+        │ Custom Object Tracking │
+        │ Centroid-based Algo    │
+        │ (Distance Matching)    │
+        └───────┬────────────────┘
+                │
+                ▼
+        ┌────────────────┐
+        │ Distance Calc  │
+        │ (Pixel space)  │
+        └───────┬────────┘
+                │
+                ▼
+        ┌────────────────┐
+        │ Time Calc (FPS)│
+        └───────┬────────┘
+                │
+                ▼
+        ┌────────────────┐
+        │ Speed Estimation│
+        │ m/s → km/h     │
+        └───────┬────────┘
+                │
+                ▼
+        ┌────────────────────────┐
+        │ Output Visualization   │
+        │ Box + ID + Speed       │
+        └────────────────────────┘
+
+
+2️⃣ INTERVIEW EXPLANATION (ENGLISH)
+🔹 Short (30 sec)
+
+“This project estimates the speed of vehicles from video footage.
+YOLOv8 is used for object detection, a centroid-based tracking algorithm maintains object identity across frames, and speed is calculated using frame-to-frame displacement and FPS-based time conversion.”
+
+🔹 Detailed (1–2 min)
+
+“The system processes video frames using OpenCV.
+YOLOv8 detects vehicles in each frame and outputs bounding boxes.
+A custom centroid-based tracking algorithm assigns unique IDs by comparing Euclidean distance between object centers across frames.
+The displacement of each object is calculated and divided by the time difference derived from FPS to estimate speed, which is finally converted to km/h.”
